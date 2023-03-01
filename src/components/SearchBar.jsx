@@ -7,7 +7,7 @@ function SearchBar() {
 const [ searchQuery, setSearchQuery ] = useState("");
 const [ recipeResults, setRecipeResults ] = useState([]);
 
-const API_URL = `https://api.spoonacular.com/recipes/complexSearch?query=${searchQuery}&number=5&apiKey=${process.env.REACT_APP_API_KEY}&includeNutrition=true`;
+const API_URL = `https://api.spoonacular.com/recipes/complexSearch?query=${searchQuery}&apiKey=${process.env.REACT_APP_API_KEY}&includeNutrition=true`;
 
 const getRecipes = () => {
         axios.get(API_URL).then(res => {
