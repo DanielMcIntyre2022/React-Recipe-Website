@@ -7,7 +7,6 @@ function App() {
     <div className="App">
       <h1>Recipe Website</h1>
       <SearchBar/>
-      {/* Display Recipes Component */}
     </div>
   );
 }
