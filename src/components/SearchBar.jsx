@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+import DisplayRecipes from './DisplayRecipes';
 
 function SearchBar() {
 
@@ -10,7 +11,6 @@ const API_URL = `https://api.spoonacular.com/recipes/complexSearch?query=${searc
 
 const getRecipes = () => {
         axios.get(API_URL).then(res => {
-        console.log(res.data.results)
         setRecipeResults(res.data.results)
     }).catch(err => {
         console.log(err)
@@ -33,6 +33,7 @@ const onSubmit = (e) => {
             />
             <button onClick={getRecipes}>Search</button>
         </form>
+        <DisplayRecipes recipeResults={recipeResults}/>
     </div>
   )
 }
