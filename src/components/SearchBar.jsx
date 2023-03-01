@@ -1,15 +1,17 @@
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 function SearchBar() {
 
 const [ searchQuery, setSearchQuery ] = useState("");
+const [ recipeResults, setRecipeResults ] = useState([]);
 
 const API_URL = `https://api.spoonacular.com/recipes/complexSearch?query=${searchQuery}&number=5&apiKey=${process.env.REACT_APP_API_KEY}&includeNutrition=true`;
 
 const getRecipes = () => {
         axios.get(API_URL).then(res => {
-            console.log(res.data)
+        console.log(res.data.results)
+        setRecipeResults(res.data.results)
     }).catch(err => {
         console.log(err)
     })
