@@ -10,7 +10,7 @@ function RecipeDetail( ) {
   const [ recipeDetails, setRecipeDetails] = useState([]);
 
   const getReceiptDetails = async (uid) => {
-      const {data} = await axios.get(`https://api.spoonacular.com/recipes/${uid}/ingredientWidget.json/?apiKey=${process.env.REACT_APP_API_KEY}`)
+      const {data} = await axios.get(`https://api.spoonacular.com/recipes/${uid}/information/?apiKey=${process.env.REACT_APP_API_KEY}`)
       console.log(data)
   };
 
