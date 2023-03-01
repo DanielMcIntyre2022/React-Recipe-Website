@@ -1,13 +1,14 @@
 import './App.css';
-import SearchBar from './components/SearchBar';
+import Home from './pages/Home';
 import { Routes, Route } from 'react-router-dom';
 
 function App() {
 
   return (
     <div className="App">
-      <h1>Recipe Website</h1>
-        <SearchBar/>
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+      </Routes>
     </div>
   );
 }

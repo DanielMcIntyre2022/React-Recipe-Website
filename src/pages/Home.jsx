@@ -1,7 +1,11 @@
+import SearchBar from '../components/SearchBar'
 
 function Home() {
   return (
-    <div>Home</div>
+    <div>
+    <h1>Recipe Website</h1>
+        <SearchBar/>
+    </div>
   )
 }
 
