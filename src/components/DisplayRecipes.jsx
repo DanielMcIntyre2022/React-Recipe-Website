@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function DisplayRecipes( {recipeResults }) {
 
@@ -19,7 +20,9 @@ const selectPageHandler = (selectPage) => {
         {recipeResults.slice(page * 5 - 5, page * 5).map(recipe => (
             <div key={recipe}>
                 <h2>{recipe.title}</h2>
-                <img src={recipe.image} alt='recipe image'/>
+                <Link to={`recipe/${recipe.id}`}>
+                   <img src={recipe.image} alt='recipe image'/>
+                </Link>
             </div>
         ))}
         {
