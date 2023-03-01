@@ -13,7 +13,8 @@ function App() {
   return (
     <div className="App">
       <h1>Recipe Website</h1>
-      {/* Search Bar */}
+      {/* Search Bar Component */}
+      {/* Display Search Results */}
     </div>
   );
 }
