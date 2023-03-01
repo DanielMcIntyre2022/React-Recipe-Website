@@ -9,18 +9,27 @@ function RecipeDetail( ) {
   const { uniqueID: uniqueID} = useParams();
   const [ recipeDetails, setRecipeDetails] = useState([]);
 
-  const getReceiptDetails = async (uid) => {
-      const {data} = await axios.get(`https://api.spoonacular.com/recipes/${uid}/information/?apiKey=${process.env.REACT_APP_API_KEY}`)
-      console.log(data)
-  };
+  // make axios call with the unique id as a param to receive data related to its ID
 
+  const getReceiptDetails = (uid) => {
+      axios.get(`https://api.spoonacular.com/recipes/${uid}/information/?apiKey=${process.env.REACT_APP_API_KEY}`)
+      .then(res => {
+        setRecipeDetails(res.data)
+      })
+  };
+  
   useEffect(() => {
     if (!uniqueID) return;
     getReceiptDetails(uniqueID)
   }, [uniqueID]);
 
   return (
-    <div>RecipeDetail</div>
+    <div>
+      <div>
+        <h2>{recipeDetails.title}</h2>
+        <img src={recipeDetails.image}/>
+      </div>
+    </div>
   )
 }
 
