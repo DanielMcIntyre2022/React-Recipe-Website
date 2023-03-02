@@ -35,7 +35,7 @@ const onSubmit = (e) => {
 }
   
   return (
-    <div className='flex justify-between mx-16 max-w-6xl mt-10'>
+    <div className='flex justify-between items-center mx-32 mt-10'>
         <div className='recipe-search-bar'>
              <form onSubmit={onSubmit}>
                 <input
@@ -43,14 +43,15 @@ const onSubmit = (e) => {
                 type="text"
                 placeholder='search for a recipe...'
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className='border'
+                className='border p-3'
                 />
-                <button onClick={getSearchedRecipes}>Search</button>
+                <button className="ml-2 bg-yellow-200 p-3 rounded-lg" onClick={getSearchedRecipes}>Search</button>
             </form>
         </div>
-        <div className='cuisine-filter'>
+        <div className='cuisine-filter flex items-center'>
+            <h2>Select Cuisine:</h2>
                 <select 
-                className="p-2"
+                className="p-2 ml-5"
                 name="cuisine" 
                 onChange={((e) => setCuisineFilter(e.target.value))}>
                     {
