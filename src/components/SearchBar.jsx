@@ -6,25 +6,35 @@ import DisplayRecipes from './DisplayRecipes';
 function SearchBar() {
 
 const [ searchQuery, setSearchQuery ] = useState("");
-const [ cuisineFilter, setCuisineFilter ] = useState("");
+const [ cuisineFilter, setCuisineFilter ] = useState([]);
 const [ recipeResults, setRecipeResults ] = useState([]);
 
-// api endpoint for recipe searches/cuisine filters
-const RECIPE_FILTER_AND_SEARCH_URL=`https://api.spoonacular.com/recipes/complexSearch?query=${searchQuery}&${cuisineFilter}&apiKey=${process.env.REACT_APP_API_KEY}&includeNutrition=true`
+// api endpoint for recipe searches 
+const RECIPE_SEARCH_URL=`https://api.spoonacular.com/recipes/complexSearch?query=${searchQuery}&apiKey=${process.env.REACT_APP_API_KEY}&includeNutrition=true`
+// api endpoint for recipe cuisines
+const RECIPE_CUISINE_FILTER=`https://api.spoonacular.com/recipes/complexSearch?query=${cuisineFilter}&apiKey=${process.env.REACT_APP_API_KEY}&includeNutrition=true`
 
 // function for recipe searches without cuisine filter 
 const getSearchedRecipes = () => {
-        axios.get(RECIPE_FILTER_AND_SEARCH_URL).then(res => {
+        axios.get(RECIPE_SEARCH_URL).then(res => {
         setRecipeResults(res.data.results)
     }).catch(err => {
         console.log(err)
     })
 };
 
+// function to filter through recipes by cuisine 
+const getFilteredCuisines = () => {
+    axios.get(RECIPE_CUISINE_FILTER).then(res => {
+        console.log(res.data.results)
+        setRecipeResults(res.data.results)
+    })
+};
+
 const onSubmit = (e) => {
     e.preventDefault();
 }
-  
+
   return (
     <div>
         <div className='flex justify-between items-center mx-32 mt-5'>
@@ -43,6 +53,7 @@ const onSubmit = (e) => {
         <div className='cuisine-filter flex items-center'>
             <h2>Select Cuisine:</h2>
                 <select 
+                onClick={getFilteredCuisines}
                 className="p-2 ml-5"
                 name="cuisine"
                 onChange={((e) => setCuisineFilter(e.target.value))}
