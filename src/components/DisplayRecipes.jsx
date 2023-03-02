@@ -16,7 +16,9 @@ const selectPageHandler = (selectPage) => {
 
   return (
     // Display Recipes //
-    <div>
+    <div className="display-recipes sm:grid sm:grid-cols-2 
+    lg:grid-cols-3 xl:grid-cols-4 2x1:grid-cols-5 max-w-6x1 
+    mx-auto py-4 ">
         {recipeResults.slice(page * 5 - 5, page * 5).map(recipe => (
             <div key={recipe}>
                 <h2>{recipe.title}</h2>

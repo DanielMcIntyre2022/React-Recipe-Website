@@ -35,8 +35,9 @@ const onSubmit = (e) => {
 }
   
   return (
-    <div className='flex justify-between items-center mx-32 mt-10'>
-        <div className='recipe-search-bar'>
+    <div>
+        <div className='flex justify-between items-center mx-32 mt-10'>
+            <div className='recipe-search-bar'>
              <form onSubmit={onSubmit}>
                 <input
                 value={searchQuery}
@@ -60,9 +61,12 @@ const onSubmit = (e) => {
                         ))
                     }
                 </select>
+            </div>
         </div>
-        <DisplayRecipes recipeResults={recipeResults}/>
+        <div className="display-results">
+            <DisplayRecipes recipeResults={recipeResults}/>
     </div>
+</div>
   )
 }
 
