@@ -24,17 +24,19 @@ function RecipeDetail( ) {
   }, [uniqueID]);
 
   return (
-    <div>
-      <div>
-        <h2>{recipeDetails.title}</h2>
-        <img src={recipeDetails.image}/>
+    <div className="recipe-detail-wrapper mt-10">
+      <div className="left-recipe-detail flex">
+        <div className="recipe-image-title">
+          <img className="border-8 rounded-full" src={recipeDetails.image}/>
+          <h2>{recipeDetails.title}</h2>
+        </div>
       </div>
-      <div className="health-info">
+      <div className="health-info flex flex-col">
         <h2>Health Information:</h2>
-        <span>Vegetarian:{recipeDetails.vegetarian === true ? <p>Yes</p> : <p>No</p>}</span>
-        <span>Gluten Free:{recipeDetails.glutenFree === true ? <p>Gluten Free</p> : <p>No</p>}</span>
-        <span>Dairy Free:{recipeDetails.dairyFree === true ? <p>Diary Free</p> : <p>No</p>}</span>
-        <span>Very Healthy?{recipeDetails.veryHealthy === true ? <p>Diary Free</p> : <p>No</p>}</span>
+        <span>Vegetarian: {recipeDetails.vegetarian === true ? <span>Yes</span> : <span>No</span>}</span>
+        <span>Gluten Free:{recipeDetails.glutenFree === true ? <span>Gluten Free</span> : <span>No</span>}</span>
+        <span>Dairy Free:{recipeDetails.dairyFree === true ? <span>Diary Free</span> : <span>No</span>}</span>
+        <span>Very Healthy?{recipeDetails.veryHealthy === true ? <span>Diary Free</span> : <span>No</span>}</span>
       </div>
       <div className="ingredient-list">
         <h2>Ingredients:</h2>
