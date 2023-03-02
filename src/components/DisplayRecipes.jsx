@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function DisplayRecipes( {recipeResults }) {
+function DisplayRecipes( {recipeResults}) {
 
 // set the default page state
 const [page, setPage] = useState(1);
