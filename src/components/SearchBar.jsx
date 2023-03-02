@@ -26,8 +26,9 @@ const getSearchedRecipes = () => {
 // function to filter through recipes by cuisine 
 const getFilteredCuisines = () => {
     axios.get(RECIPE_CUISINE_FILTER).then(res => {
-        console.log(res.data.results)
-        setRecipeResults(res.data.results)
+        setCuisineFilter(res.data.results)
+    }).catch(err => {
+        console.log(err)
     })
 };
 
@@ -69,7 +70,7 @@ const onSubmit = (e) => {
             </div>
         </div>
         <div className="display-results">
-            <DisplayRecipes recipeResults={recipeResults}/>
+            <DisplayRecipes recipeResults={recipeResults} cuisineFilter={cuisineFilter}/>
     </div>
 </div>
   )

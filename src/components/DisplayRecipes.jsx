@@ -2,7 +2,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { GrLinkNext, GrLinkPrevious } from 'react-icons/gr';
 
-function DisplayRecipes( {recipeResults}) {
+function DisplayRecipes( {recipeResults, cuisineFilter}) {
+
+console.log(cuisineFilter)
 
 // set the default page state
 const [page, setPage] = useState(1);
@@ -16,7 +18,7 @@ const selectPageHandler = (selectPage) => {
 };
 
   return (
-    // Display Recipes //
+    // Display Searched Recipes //
 <div>
     <div className="display-recipes sm:grid sm:grid-cols-2 
     lg:grid-cols-3 xl:grid-cols-3 2x1:grid-cols-2 max-w-6x1 
@@ -31,6 +33,7 @@ const selectPageHandler = (selectPage) => {
         ))}
         </div>
         {
+        
     // Pagination Logic //
             recipeResults.length > 0 && 
             <div className="pagination"> 
