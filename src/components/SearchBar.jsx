@@ -20,6 +20,8 @@ const getRecipes = () => {
 const onSubmit = (e) => {
     e.preventDefault();
 }
+
+console.log(recipeResults)
   
   return (
     <div>

@@ -23,8 +23,6 @@ function RecipeDetail( ) {
     getReceiptDetails(uniqueID)
   }, [uniqueID]);
 
-  console.log(recipeDetails)
-
   return (
     <div>
       <div>
