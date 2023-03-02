@@ -1,3 +1,4 @@
+import axios from "axios";
 import { cuisines } from "../data";
 import { useState } from "react";
 
@@ -7,9 +8,10 @@ const [ cuisineFilter, setCuisineFilter ] = useState('')
 
 const API_URL = `https://api.spoonacular.com/recipes/complexSearch?query=${cuisineFilter}&apiKey=${process.env.REACT_APP_API_KEY}&includeNutrition=true`;
 
-const handleFilter = (e) => {
-    const valueSelected = e.target.value;
-    setCuisineFilter(valueSelected)
+const getCuisines = () => {
+    axios.get(API_URL).then(res => {
+        console.log(res.data)
+    })
 };
 
 console.log(cuisineFilter);
@@ -19,10 +21,10 @@ console.log(cuisineFilter);
         <select 
         className="p-2"
         name="cuisine" 
-        onChange={handleFilter}>
+        onChange={((e) => setCuisineFilter(e.target.value))}>
             {
                 cuisines.map(cuisine => (
-                    <option>{cuisine}</option>
+                    <option onClick={getCuisines}>{cuisine}</option>
                 ))
             }
         </select>
