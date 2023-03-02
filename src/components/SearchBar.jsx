@@ -36,7 +36,7 @@ const onSubmit = (e) => {
   
   return (
     <div>
-        <div className='flex justify-between items-center mx-32 mt-10'>
+        <div className='flex justify-between items-center mx-32 mt-5'>
             <div className='recipe-search-bar'>
              <form onSubmit={onSubmit}>
                 <input
