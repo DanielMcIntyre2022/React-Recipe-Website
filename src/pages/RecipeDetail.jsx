@@ -40,7 +40,7 @@ function RecipeDetail( ) {
       </div>
       <div className="health-info border border-slate-400 p-10">
         <h2 className="font-semibold underline mb-5 text-xl">Health Information:</h2>
-      <ul>
+      <ul className="flex flex-col items-start">
         <li>Vegetarian: {recipeDetails.vegetarian === true ? <span>Yes</span> : <span>No</span>}</li>
         <li>Gluten Free: {recipeDetails.glutenFree === true ? <span>Gluten Free</span> : <span>No</span>}</li>
         <li>Dairy Free: {recipeDetails.dairyFree === true ? <span>Diary Free</span> : <span>No</span>}</li>
@@ -50,22 +50,22 @@ function RecipeDetail( ) {
      
       <div className="ingredient-list border border-slate-400 p-10">
         <h2 className="font-semibold underline mb-5 text-xl">Ingredients:</h2>
-        <ul>
+        <ul className="flex flex-col items-start">
         { 
         recipeDetails.extendedIngredients &&
         recipeDetails.extendedIngredients.map(ingredient => (
-             <li key={ingredient}>{ingredient.name}</li>
+             <li className="list-disc" key={ingredient}>{ingredient.name}</li>
         ))}
         </ul>
         </div>
       </div>
-      <div className="cooking-instructions border pl-5 pr-5 pb-20 border-slate-400">
+      <div className="cooking-instructions border pl-10 pr-10 pb-32 border-slate-400">
         <h2 className="font-semibold underline mb-5 mt-10 text-xl">Cooking Instructions:</h2>
-        <ol>
+        <ol className="flex flex-col items-start">
           {
           recipeDetails.extendedIngredients &&
           recipeDetails.analyzedInstructions[0].steps.map(instructions => (
-              <li key={instructions}>{instructions.step}</li>
+              <li className="list-decimal" key={instructions}>{instructions.step}</li>
           ))}
           </ol>
       </div>
