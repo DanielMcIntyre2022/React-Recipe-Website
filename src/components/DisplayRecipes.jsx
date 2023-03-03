@@ -21,19 +21,32 @@ const selectPageHandler = (selectPage) => {
     // Display Searched Recipes //
 <div>
     <div className="display-recipes sm:grid sm:grid-cols-2 
-    lg:grid-cols-3 xl:grid-cols-3 2x1:grid-cols-2 max-w-6x1 
-    mx-auto py-4 ">
+    lg:grid-cols-3 xl:grid-cols-5 2x1:grid-cols-2 max-w-6x1 
+    mx-auto py-4 mt-10">
         {recipeResults.slice(page * 5 - 5, page * 5).map(recipe => (
-            <div key={recipe} className="flex m-2">
+            <div key={recipe} className="flex m-2 flex-col">
                 <Link to={`recipe/${recipe.id}`}>
-                   <img className="rounded-full border-8" src={recipe.image} alt='recipe image'/>
+                   <img className="rounded-full border-8 
+                    sm:hover:shadow-slate-400 
+                    sm:shadow-md" 
+                   src={recipe.image} alt='recipe image'
+                   />
                 </Link>
-                <h2 className="flex justify-center items-center ml-2 font-semibold">{recipe.title}</h2>
+                <h2 className="flex justify-center ml-2 font-semibold mt-5">{recipe.title}</h2>
             </div>
         ))}
         </div>
+
+    {/* <div>
+        {   cuisineFilter &&
+            cuisineFilter.map(cuisine => (
+                <p>{cuisine.title}</p>
+            ))
+        }
+    </div> */}
+
+
         {
-        
     // Pagination Logic //
             recipeResults.length > 0 && 
             <div className="pagination"> 
