@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import { Routes, Route } from 'react-router-dom';
 import RecipeDetail from './pages/RecipeDetail';
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path='/recipe/:uniqueID' element={<RecipeDetail/>}/>
       </Routes>
+      <Footer/>
     </div>
   );
 }
