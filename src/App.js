@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <Header/>
       <Routes>
-        <Route path='/' element={<Home/>}/>
+        <Route path='/React-Recipe-Website' element={<Home/>}/>
         <Route path='/recipe/:uniqueID' element={<RecipeDetail/>}/>
       </Routes>
       <Footer/>
