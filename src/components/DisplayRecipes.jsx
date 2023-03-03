@@ -4,8 +4,6 @@ import { GrLinkNext, GrLinkPrevious } from 'react-icons/gr';
 
 function DisplayRecipes( {recipeResults, cuisineFilter}) {
 
-console.log(cuisineFilter)
-
 // set the default page state
 const [page, setPage] = useState(1);
 
@@ -18,34 +16,49 @@ const selectPageHandler = (selectPage) => {
 };
 
   return (
-    // Display Searched Recipes //
+
 <div>
-    <div className="display-recipes sm:grid sm:grid-cols-2 
-    lg:grid-cols-3 xl:grid-cols-5 2x1:grid-cols-2 py-4 mt-10">
-        {recipeResults.slice(page * 5 - 5, page * 5).map(recipe => (
-            <div key={recipe} className="flex m-2 flex-col">
-                <Link to={`recipe/${recipe.id}`}>
-                   <img className="rounded-full border-8 
-                    sm:hover:shadow-slate-400 
-                    sm:shadow-md" 
-                   src={recipe.image} alt='recipe image'
-                   />
-                </Link>
-                <h2 className="flex justify-center ml-2 font-semibold mt-5">{recipe.title}</h2>
+    {/* If user search for recipes, display searched recipes */}
+    {recipeResults &&
+        <div className="display-recipes sm:grid sm:grid-cols-2 
+        lg:grid-cols-3 xl:grid-cols-5 2x1:grid-cols-2 py-4 mt-10">
+            {recipeResults.slice(page * 5 - 5, page * 5).map(recipe => (
+                <div key={recipe} className="flex m-2 flex-col">
+                    <Link to={`recipe/${recipe.id}`}>
+                       <img className="rounded-full border-8 
+                        sm:hover:shadow-slate-400 
+                        sm:shadow-md" 
+                       src={recipe.image} alt='recipe image'
+                       />
+                    </Link>
+                    <h2 className="flex justify-center ml-2 font-semibold mt-5">{recipe.title}</h2>
+                </div>
+            ))}
             </div>
-        ))}
+    }
+    {
+        // If user filters cuisines, display filtered cuisines
+        cuisineFilter && 
+        <div className="display-recipes sm:grid sm:grid-cols-2 
+        lg:grid-cols-3 xl:grid-cols-5 2x1:grid-cols-2 py-4 mt-10">
+             {   Array.isArray(cuisineFilter) &&
+                cuisineFilter.map(cuisine => (
+                    <div key={cuisine} className="flex m-2 flex-col">
+                    <Link to={`recipe/${cuisine.id}`}>
+                       <img className="rounded-full border-8 
+                        sm:hover:shadow-slate-400 
+                        sm:shadow-md" 
+                       src={cuisine.image} alt='recipe image'
+                       />
+                    </Link>
+                    <h2 className="flex justify-center ml-2 font-semibold mt-5">{cuisine.title}</h2>
+                </div>
+                ))
+            }
         </div>
-
-    {/* <div>
-        {   cuisineFilter &&
-            cuisineFilter.map(cuisine => (
-                <p>{cuisine.title}</p>
-            ))
-        }
-    </div> */}
-
-        {
-    // Pagination Logic //
+    }
+     {
+    // Pagination Logic for Search Results //
             recipeResults.length > 0 && 
             <div className="pagination mb-28"> 
                 <button
