@@ -17,10 +17,10 @@ const RECIPE_CUISINE_FILTER=`https://api.spoonacular.com/recipes/complexSearch?q
 
 // function for recipe searches without cuisine filter 
 const getSearchedRecipes = () => {
-        setCuisineFilter(null)
         setLoading(true)
         axios.get(RECIPE_SEARCH_URL).then(res => {
         setRecipeResults(res.data.results)
+        setCuisineFilter([])
         setLoading(false)
     }).catch(err => {
         console.log(err)
@@ -31,11 +31,11 @@ if (loading ) return "Loading..."
 
 // function to filter through recipes by cuisine 
 const getFilteredCuisines = () => {
-    setSearchQuery(null)
     setLoading(true)
     axios.get(RECIPE_CUISINE_FILTER).then(res => {
         setCuisineFilter(res.data.results)
         setLoading(false)
+        setRecipeResults([])
     }).catch(err => {
         console.log(err)
     })
