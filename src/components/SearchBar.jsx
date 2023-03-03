@@ -8,6 +8,7 @@ function SearchBar() {
 const [ searchQuery, setSearchQuery ] = useState("");
 const [ cuisineFilter, setCuisineFilter ] = useState([]);
 const [ recipeResults, setRecipeResults ] = useState([]);
+const [ loading, setLoading ] = useState(false)
 
 // api endpoint for recipe searches 
 const RECIPE_SEARCH_URL=`https://api.spoonacular.com/recipes/complexSearch?query=${searchQuery}&apiKey=${process.env.REACT_APP_API_KEY}&includeNutrition=true`
@@ -16,17 +17,23 @@ const RECIPE_CUISINE_FILTER=`https://api.spoonacular.com/recipes/complexSearch?q
 
 // function for recipe searches without cuisine filter 
 const getSearchedRecipes = () => {
+        setLoading(true)
         axios.get(RECIPE_SEARCH_URL).then(res => {
         setRecipeResults(res.data.results)
+        setLoading(false)
     }).catch(err => {
         console.log(err)
     })
 };
 
+if (loading ) return "Loading..."
+
 // function to filter through recipes by cuisine 
 const getFilteredCuisines = () => {
+    setLoading(true)
     axios.get(RECIPE_CUISINE_FILTER).then(res => {
         setCuisineFilter(res.data.results)
+        setLoading(false)
     }).catch(err => {
         console.log(err)
     })
