@@ -8,7 +8,7 @@ function SearchBar() {
 const [ searchQuery, setSearchQuery ] = useState("");
 const [ cuisineFilter, setCuisineFilter ] = useState([]);
 const [ recipeResults, setRecipeResults ] = useState([]);
-const [ apiErrorMessage, setApiErrorMessage ] = useState('');
+const [ apiErrorMessage, setApiErrorMessage ] = useState(false);
 const [ loading, setLoading ] = useState(false);
 
 // api endpoint for recipe searches 
@@ -19,6 +19,7 @@ const RECIPE_CUISINE_FILTER=`https://api.spoonacular.com/recipes/complexSearch?q
 // function for recipe searches without cuisine filter 
 const getSearchedRecipes = () => {
         setLoading(true)
+        setApiErrorMessage(false)
         axios.get(RECIPE_SEARCH_URL)
         .then(res => {
             setRecipeResults(res.data.results)
@@ -26,16 +27,16 @@ const getSearchedRecipes = () => {
             setLoading(false)
             setCuisineFilter([])
     }).catch(err => {
-        setApiErrorMessage(err)
+        setLoading(false)
+        setApiErrorMessage(true)
         console.log(err)
     })
 };
 
-if (loading ) return "Loading..."
-
 // function to filter through recipes by cuisine 
 const getFilteredCuisines = () => {
     setLoading(true)
+    setApiErrorMessage(false)
     axios.get(RECIPE_CUISINE_FILTER)
     .then(res => {
         setCuisineFilter(res.data.results)
@@ -43,10 +44,14 @@ const getFilteredCuisines = () => {
         setLoading(false)
         setRecipeResults([])
     }).catch(err => {
-        setApiErrorMessage(err)
+        setApiErrorMessage(true)
+        setLoading(false)
         console.log(err)
     })
 };
+
+    if (loading) return "Loading..."
+    if (apiErrorMessage) return "Something went wrong..."
 
 const onSubmit = (e) => {
     e.preventDefault();
@@ -86,7 +91,7 @@ const onSubmit = (e) => {
             </div>
         </div>
         <div className="display-results">
-            <DisplayRecipes recipeResults={recipeResults} cuisineFilter={cuisineFilter} apiErrorMessage={apiErrorMessage}/>
+            <DisplayRecipes recipeResults={recipeResults} cuisineFilter={cuisineFilter}/>
     </div>
 </div>
   )

@@ -22,6 +22,7 @@ const selectPageHandler = (selectPage) => {
 
 <>
     {/* If user search for recipes, display searched recipes */}
+
     { recipeResults ?
         <div className="display-recipes sm:grid sm:grid-cols-2 
         lg:grid-cols-3 xl:grid-cols-5 2x1:grid-cols-2 py-4 mt-10">
