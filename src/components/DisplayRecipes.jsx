@@ -17,9 +17,9 @@ const selectPageHandler = (selectPage) => {
 
   return (
 
-<div>
+<>
     {/* If user search for recipes, display searched recipes */}
-    {recipeResults &&
+    { recipeResults ?
         <div className="display-recipes sm:grid sm:grid-cols-2 
         lg:grid-cols-3 xl:grid-cols-5 2x1:grid-cols-2 py-4 mt-10">
             {recipeResults.slice(page * 5 - 5, page * 5).map(recipe => (
@@ -35,10 +35,11 @@ const selectPageHandler = (selectPage) => {
                 </div>
             ))}
             </div>
+            : ''
     }
     {
         // If user filters cuisines, display filtered cuisines
-        cuisineFilter && 
+        cuisineFilter ?
         <div className="display-recipes sm:grid sm:grid-cols-2 
         lg:grid-cols-3 xl:grid-cols-5 2x1:grid-cols-2 py-4 mt-10">
              {   Array.isArray(cuisineFilter) &&
@@ -56,6 +57,7 @@ const selectPageHandler = (selectPage) => {
                 ))
             }
         </div>
+        : ''
     }
      {
     // Pagination Logic for Search Results //
@@ -80,7 +82,31 @@ const selectPageHandler = (selectPage) => {
                 </button>
             </div>
         }
-</div>
+
+{/* {
+    // Pagination Logic for Cuisine Results //
+            cuisineFilter.length > 0 && 
+            <div className="pagination mb-28"> 
+                <button
+                onClick={() => selectPageHandler(page - 1)}>
+                    <GrLinkPrevious className="w-10 h-5"/>
+                </button>
+
+                {[...Array(cuisineFilter.length / 5)].map((_,i) => {
+                        return <span 
+                        className={page === i+1? "bg-gray-300 p-5 rounded m-2" : ""} 
+                        onClick={() => selectPageHandler(i + 1)} key={i}>
+                            {i +1}
+                        </span>
+                    })}
+
+                <button 
+                onClick={() => selectPageHandler(page + 1)}>
+                    <GrLinkNext className="w-10 h-5"/>
+                </button>
+            </div>
+        } */}
+    </>
   )
 };
 
