@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { Link } from "react-router-dom";
 import { GrLinkNext, GrLinkPrevious } from 'react-icons/gr';
 
-function DisplayRecipes( {recipeResults, cuisineFilter}) {
+function DisplayRecipes({recipeResults, cuisineFilter, apiErrorMessage}) {
 
 // set the default page state
 const [page, setPage] = useState(1);
@@ -31,7 +31,7 @@ const selectPageHandler = (selectPage) => {
                        <img className="rounded-full border-8 
                         sm:hover:shadow-slate-400 
                         sm:shadow-md" 
-                       src={recipe.image} alt='recipe image'
+                       src={recipe.image} alt='recipe'
                        />
                     </Link>
                     <h2 className="flex justify-center ml-2 font-semibold mt-5">{recipe.title}</h2>
@@ -53,7 +53,8 @@ const selectPageHandler = (selectPage) => {
                     <img className="rounded-full border-8 
                      sm:hover:shadow-slate-400 
                      sm:shadow-md" 
-                    src={cuisine.image} alt='recipe image'
+                    src={cuisine.image} 
+                    alt='recipe'
                     />
                  </Link>
                  <h2 className="flex justify-center ml-2 font-semibold mt-5">{cuisine.title}</h2>

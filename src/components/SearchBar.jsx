@@ -8,6 +8,7 @@ function SearchBar() {
 const [ searchQuery, setSearchQuery ] = useState("");
 const [ cuisineFilter, setCuisineFilter ] = useState([]);
 const [ recipeResults, setRecipeResults ] = useState([]);
+const [ apiErrorMessage, setApiErrorMessage ] = useState('');
 const [ loading, setLoading ] = useState(false);
 
 // api endpoint for recipe searches 
@@ -18,11 +19,14 @@ const RECIPE_CUISINE_FILTER=`https://api.spoonacular.com/recipes/complexSearch?q
 // function for recipe searches without cuisine filter 
 const getSearchedRecipes = () => {
         setLoading(true)
-        axios.get(RECIPE_SEARCH_URL).then(res => {
-        setRecipeResults(res.data.results)
-        setCuisineFilter([])
-        setLoading(false)
+        axios.get(RECIPE_SEARCH_URL)
+        .then(res => {
+            setRecipeResults(res.data.results)
+            setApiErrorMessage('')
+            setLoading(false)
+            setCuisineFilter([])
     }).catch(err => {
+        setApiErrorMessage(err)
         console.log(err)
     })
 };
@@ -32,11 +36,14 @@ if (loading ) return "Loading..."
 // function to filter through recipes by cuisine 
 const getFilteredCuisines = () => {
     setLoading(true)
-    axios.get(RECIPE_CUISINE_FILTER).then(res => {
+    axios.get(RECIPE_CUISINE_FILTER)
+    .then(res => {
         setCuisineFilter(res.data.results)
+        setApiErrorMessage('')
         setLoading(false)
         setRecipeResults([])
     }).catch(err => {
+        setApiErrorMessage(err)
         console.log(err)
     })
 };
@@ -79,7 +86,7 @@ const onSubmit = (e) => {
             </div>
         </div>
         <div className="display-results">
-            <DisplayRecipes recipeResults={recipeResults} cuisineFilter={cuisineFilter}/>
+            <DisplayRecipes recipeResults={recipeResults} cuisineFilter={cuisineFilter} apiErrorMessage={apiErrorMessage}/>
     </div>
 </div>
   )
