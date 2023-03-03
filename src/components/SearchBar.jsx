@@ -8,7 +8,7 @@ function SearchBar() {
 const [ searchQuery, setSearchQuery ] = useState("");
 const [ cuisineFilter, setCuisineFilter ] = useState([]);
 const [ recipeResults, setRecipeResults ] = useState([]);
-const [ loading, setLoading ] = useState(false)
+const [ loading, setLoading ] = useState(false);
 
 // api endpoint for recipe searches 
 const RECIPE_SEARCH_URL=`https://api.spoonacular.com/recipes/complexSearch?query=${searchQuery}&apiKey=${process.env.REACT_APP_API_KEY}&includeNutrition=true`

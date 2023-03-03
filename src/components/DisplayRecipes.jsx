@@ -44,7 +44,6 @@ const selectPageHandler = (selectPage) => {
         }
     </div> */}
 
-
         {
     // Pagination Logic //
             recipeResults.length > 0 && 

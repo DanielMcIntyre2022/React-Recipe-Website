@@ -8,13 +8,16 @@ function RecipeDetail( ) {
 
   const { uniqueID: uniqueID} = useParams();
   const [ recipeDetails, setRecipeDetails] = useState([]);
+  const [ loading, setLoading ] = useState(false);
 
   // make axios call with the unique id as a param to receive data related to its ID
 
   const getReceiptDetails = async (uid) => {
+       setLoading(true)
       await axios.get(`https://api.spoonacular.com/recipes/${uid}/information/?apiKey=${process.env.REACT_APP_API_KEY}`)
       .then(res => {
         setRecipeDetails(res.data)
+        setLoading(false)
       })
   };
   
@@ -22,6 +25,8 @@ function RecipeDetail( ) {
     if (!uniqueID) return;
     getReceiptDetails(uniqueID)
   }, [uniqueID]);
+
+  if (loading ) return "Loading..."
 
   return (
   <div className="recipe-detail-container mt-10 flex flex-col">
