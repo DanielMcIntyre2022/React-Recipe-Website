@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { GrLinkNext, GrLinkPrevious } from 'react-icons/gr';
 
@@ -9,14 +9,17 @@ const [page, setPage] = useState(1);
 
 // function to update the state and change page 
 const selectPageHandler = (selectPage) => {
+    console.log('clicked')
     if(selectPage >= 1 && 
         (selectPage <= recipeResults.length / 5 ||
         selectPage <= cuisineFilter.length / 5 )
-        && selectPage !== page)
+        && 
+        selectPage !== page)
     setPage(selectPage)
 };
 
   return (
+
 <>
     {/* If user search for recipes, display searched recipes */}
     { recipeResults ?
@@ -86,6 +89,7 @@ const selectPageHandler = (selectPage) => {
 
 {
     // Pagination Logic for Cuisine Results //
+    Array.isArray(cuisineFilter) &&
         cuisineFilter.length > 0 && 
             <div className="pagination mb-28"> 
                 <button
