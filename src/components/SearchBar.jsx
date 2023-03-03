@@ -26,10 +26,9 @@ const getSearchedRecipes = () => {
             setApiErrorMessage('')
             setLoading(false)
             setCuisineFilter([])
-    }).catch(err => {
+    }).catch(() => {
         setLoading(false)
         setApiErrorMessage(true)
-        console.log(err)
     })
 };
 
@@ -43,10 +42,9 @@ const getFilteredCuisines = () => {
         setApiErrorMessage('')
         setLoading(false)
         setRecipeResults([])
-    }).catch(err => {
+    }).catch(() => {
         setApiErrorMessage(true)
         setLoading(false)
-        console.log(err)
     })
 };
 
