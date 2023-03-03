@@ -53,8 +53,8 @@ function RecipeDetail( ) {
         <ul className="flex flex-col items-start">
         { 
         recipeDetails.extendedIngredients &&
-        recipeDetails.extendedIngredients.map(ingredient => (
-             <li className="list-disc" key={ingredient}>{ingredient.name}</li>
+        recipeDetails.extendedIngredients.map((ingredient, index) => (
+             <li className="list-disc" key={index}>{ingredient.name}</li>
         ))}
         </ul>
         </div>
@@ -64,8 +64,8 @@ function RecipeDetail( ) {
         <ol className="flex flex-col items-start">
           {
           recipeDetails.extendedIngredients &&
-          recipeDetails.analyzedInstructions[0].steps.map(instructions => (
-              <li className="list-decimal" key={instructions}>{instructions.step}</li>
+          recipeDetails.analyzedInstructions[0].steps.map((instructions, index) => (
+              <li className="list-decimal" key={index}>{instructions.step}</li>
           ))}
           </ol>
       </div>

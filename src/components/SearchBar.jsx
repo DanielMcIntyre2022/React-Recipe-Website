@@ -81,8 +81,8 @@ const onSubmit = (e) => {
                 onChange={((e) => setCuisineFilter(e.target.value))}
                 >
                     {
-                        cuisines.map(cuisine => (
-                            <option>
+                        cuisines.map((cuisine, index) => (
+                            <option key={index}>
                                 {cuisine}
                             </option>
                         ))

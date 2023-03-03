@@ -2,19 +2,17 @@ import { useState} from "react";
 import { Link } from "react-router-dom";
 import { GrLinkNext, GrLinkPrevious } from 'react-icons/gr';
 
-function DisplayRecipes({recipeResults, cuisineFilter, apiErrorMessage}) {
+function DisplayRecipes({recipeResults, cuisineFilter}) {
 
 // set the default page state
 const [page, setPage] = useState(1);
 
 // function to update the state and change page 
 const selectPageHandler = (selectPage) => {
-    console.log('clicked')
     if(selectPage >= 1 && 
         (selectPage <= recipeResults.length / 5 ||
         selectPage <= cuisineFilter.length / 5 )
-        && 
-        selectPage !== page)
+        && selectPage !== page)
     setPage(selectPage)
 };
 
@@ -27,7 +25,7 @@ const selectPageHandler = (selectPage) => {
         <div className="display-recipes sm:grid sm:grid-cols-2 
         lg:grid-cols-3 xl:grid-cols-5 2x1:grid-cols-2 py-4 mt-10">
             {recipeResults.slice(page * 5 - 5, page * 5).map(recipe => (
-                <div key={recipe} className="flex m-2 flex-col">
+                <div key={recipe.id} className="flex m-2 flex-col">
                     <Link to={`recipe/${recipe.id}`}>
                        <img className="rounded-full border-8 
                         sm:hover:shadow-slate-400 
@@ -49,7 +47,7 @@ const selectPageHandler = (selectPage) => {
 
             { Array.isArray(cuisineFilter) &&
             cuisineFilter?.slice(page * 5 - 5, page * 5)?.map(cuisine => (
-                 <div key={cuisine} className="flex m-2 flex-col">
+                 <div key={cuisine.id} className="flex m-2 flex-col">
                  <Link to={`recipe/${cuisine.id}`}>
                     <img className="rounded-full border-8 
                      sm:hover:shadow-slate-400 
