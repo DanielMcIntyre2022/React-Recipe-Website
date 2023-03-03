@@ -38,8 +38,8 @@ const onSubmit = (e) => {
 
   return (
     <div>
-        <div className='flex justify-between items-center mx-32 mt-5'>
-            <div className='recipe-search-bar'>
+        <div className='flex justify-between items-center mx-6 mt-10 flex-col'>
+            <div className='recipe-search-bar mb-10'>
              <form onSubmit={onSubmit}>
                 <input
                 value={searchQuery}
