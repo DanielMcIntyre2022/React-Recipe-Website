@@ -29,24 +29,26 @@ function RecipeDetail( ) {
   if (loading ) return "Loading..."
 
   return (
-  <div className="recipe-detail-container mt-10 flex flex-col">
-    <div className="recipe-detail-wrapper flex">
-      <div className="flex flex-col w-80%">
+  <div className="recipe-detail-container mt-10">
+    <div className="recipe-detail-wrapper">
+     <div className="recipe-image-and-health-info flex justify-center max-[800px]:flex-col">
       <div className="left-recipe-detail flex">
-        <div className="recipe-image-title">
-          <img className="rounded-full" src={recipeDetails.image}/>
-          <h2 className="font-bold mt-5 mb-5">{recipeDetails.title}</h2>
+        <div className="recipe-image-title border border-slate-400 p-10">
+          <img className="rounded-full border-8" src={recipeDetails.image}/>
+          <h2 className="font-bold mt-5 mb-5 text-xl">{recipeDetails.title}</h2>
         </div>
       </div>
-      <div className="health-info flex flex-col border p-10">
-        <h2 className="font-semibold underline mb-5">Health Information:</h2>
-        <span>Vegetarian: {recipeDetails.vegetarian === true ? <span>Yes</span> : <span>No</span>}</span>
-        <span>Gluten Free: {recipeDetails.glutenFree === true ? <span>Gluten Free</span> : <span>No</span>}</span>
-        <span>Dairy Free: {recipeDetails.dairyFree === true ? <span>Diary Free</span> : <span>No</span>}</span>
-        <span>Very Healthy? {recipeDetails.veryHealthy === true ? <span>Diary Free</span> : <span>No</span>}</span>
+      <div className="health-info border border-slate-400 p-10">
+        <h2 className="font-semibold underline mb-5 text-xl">Health Information:</h2>
+      <ul>
+        <li>Vegetarian: {recipeDetails.vegetarian === true ? <span>Yes</span> : <span>No</span>}</li>
+        <li>Gluten Free: {recipeDetails.glutenFree === true ? <span>Gluten Free</span> : <span>No</span>}</li>
+        <li>Dairy Free: {recipeDetails.dairyFree === true ? <span>Diary Free</span> : <span>No</span>}</li>
+        <li>Very Healthy? {recipeDetails.veryHealthy === true ? <span>Diary Free</span> : <span>No</span>}</li>
+      </ul>
       </div>
-      </div>
-      <div className="ingredient-list border p-10 w-50%">
+     
+      <div className="ingredient-list border border-slate-400 p-10">
         <h2 className="font-semibold underline mb-5 text-xl">Ingredients:</h2>
         <ul>
         { 
@@ -56,7 +58,8 @@ function RecipeDetail( ) {
         ))}
         </ul>
         </div>
-      <div className="cooking-instructions border pl-5 pr-5">
+      </div>
+      <div className="cooking-instructions border pl-5 pr-5 pb-20 border-slate-400">
         <h2 className="font-semibold underline mb-5 mt-10 text-xl">Cooking Instructions:</h2>
         <ol>
           {
